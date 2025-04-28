@@ -35,7 +35,7 @@ const About = () => {
       <div className="about-container">
         <div className="about-image-container" ref={imageRef}>
           <div className="image-placeholder">
-            <img src="/profile.jpeg" alt="Financial Advisor" />
+            <img src="../public/assets/profile.jpeg" alt="Financial Advisor" />
           </div>
         </div>
         <div className="about-content" ref={contentRef}>
