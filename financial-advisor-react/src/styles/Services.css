@@ -27,6 +27,10 @@
   padding: 1rem 0;
   position: relative;
   z-index: 2;
+  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+  scroll-snap-type: x mandatory; /* Enable snap scrolling */
+  padding: 1rem;
+  margin: 0 -1rem; /* Compensate for padding */
 }
 
 .services-container::-webkit-scrollbar {
@@ -45,6 +49,8 @@
   position: relative;
   z-index: 2;
   border: 1px solid #3d3d3d;
+  scroll-snap-align: start; /* Enable snap alignment */
+  touch-action: pan-x; /* Enable horizontal touch scrolling */
 }
 
 .service-card:hover {
@@ -69,4 +75,28 @@
   color: #b3b3b3;
   line-height: 1.6;
   font-size: 1rem;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 3rem 1rem;
+  }
+
+  .services-section h2 {
+    font-size: 2rem;
+  }
+
+  .service-card {
+    flex: 0 0 280px; /* Slightly smaller cards on mobile */
+    padding: 1.5rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+  }
 } 

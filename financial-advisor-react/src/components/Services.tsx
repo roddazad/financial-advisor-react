@@ -55,8 +55,18 @@ const Services = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [selectedService, setSelectedService] = useState<ServiceCard | null>(null);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
 
@@ -64,6 +74,7 @@ const Services = () => {
     let scrollInterval: number;
 
     const startScroll = () => {
+      if (!isAutoScrolling || isMobile) return;
       scrollInterval = window.setInterval(() => {
         if (scrollContainer) {
           scrollContainer.scrollLeft += scrollAmount;
@@ -78,17 +89,35 @@ const Services = () => {
       window.clearInterval(scrollInterval);
     };
 
+    const handleTouchStart = () => {
+      setIsAutoScrolling(false);
+      stopScroll();
+    };
+
+    const handleTouchEnd = () => {
+      setIsAutoScrolling(true);
+      startScroll();
+    };
+
     startScroll();
 
+    // Desktop events
     scrollContainer.addEventListener('mouseenter', stopScroll);
     scrollContainer.addEventListener('mouseleave', startScroll);
+
+    // Mobile events
+    scrollContainer.addEventListener('touchstart', handleTouchStart);
+    scrollContainer.addEventListener('touchend', handleTouchEnd);
 
     return () => {
       window.clearInterval(scrollInterval);
       scrollContainer.removeEventListener('mouseenter', stopScroll);
       scrollContainer.removeEventListener('mouseleave', startScroll);
+      scrollContainer.removeEventListener('touchstart', handleTouchStart);
+      scrollContainer.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [isAutoScrolling, isMobile]);
 
   return (
     <section className="services-section" ref={scrollRef}>
