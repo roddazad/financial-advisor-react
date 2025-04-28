@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import '../styles/About.css';
+import profileImage from '../assets/profile.jpeg';
 
 const About = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -35,7 +36,7 @@ const About = () => {
       <div className="about-container">
         <div className="about-image-container" ref={imageRef}>
           <div className="image-placeholder">
-            <img src="/assets/profile.jpeg" alt="Financial Advisor" />
+            <img src={profileImage} alt="Financial Advisor" />
           </div>
         </div>
         <div className="about-content" ref={contentRef}>
