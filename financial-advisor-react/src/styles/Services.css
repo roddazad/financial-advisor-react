@@ -1,0 +1,72 @@
+.services-section {
+  padding: 4rem 2rem;
+  background-color: rgba(3, 0, 14, 0.9);
+  position: relative;
+  z-index: 1;
+  margin-top: 100vh; /* Start after the hero section */
+  min-height: 100vh; /* Ensure enough space for content */
+}
+
+.services-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  font-size: 2.5rem;
+  position: relative;
+  z-index: 2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for better visibility */
+}
+
+.services-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  gap: 2rem;
+  padding: 1rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.services-container::-webkit-scrollbar {
+  display: none;
+}
+
+.service-card {
+  flex: 0 0 300px;
+  background: #2d2d2d;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  opacity: 1; /* Make cards visible by default */
+  position: relative;
+  z-index: 2;
+  border: 1px solid #3d3d3d;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  border-color: #4d4d4d;
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.service-card h3 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.service-card p {
+  color: #b3b3b3;
+  line-height: 1.6;
+  font-size: 1rem;
+} 
