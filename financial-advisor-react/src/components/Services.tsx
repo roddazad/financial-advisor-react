@@ -7,7 +7,7 @@ interface ServiceCard {
   icon: string;
 }
 
-const services: ServiceCard[] = [
+const baseServices: ServiceCard[] = [
   {
     title: "Investment Planning",
     description: "Strategic investment solutions tailored to your financial goals",
@@ -40,6 +40,9 @@ const services: ServiceCard[] = [
   }
 ];
 
+// Create three sets of services for infinite loop effect
+const services = [...baseServices, ...baseServices, ...baseServices];
+
 const Services = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -55,7 +58,8 @@ const Services = () => {
       scrollInterval = window.setInterval(() => {
         if (scrollContainer) {
           scrollContainer.scrollLeft += scrollAmount;
-          if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+          // Reset scroll position when reaching the end of the first set
+          if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth / 3)) {
             scrollContainer.scrollLeft = 0;
           }
         }
