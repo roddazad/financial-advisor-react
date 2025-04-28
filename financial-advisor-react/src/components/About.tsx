@@ -11,14 +11,10 @@ const About = () => {
       if (!aboutRef.current) return;
 
       const rect = aboutRef.current.getBoundingClientRect();
-      const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
-
-      // Calculate how far the section is from the viewport center
       const distanceFromCenter = rect.top + rect.height / 2 - windowHeight / 2;
       const scrollProgress = Math.min(Math.max(-distanceFromCenter / (windowHeight / 2), -1), 1);
 
-      // Apply animations based on scroll direction
       if (imageRef.current) {
         imageRef.current.style.transform = `translateX(${scrollProgress * 50}px) rotate(${scrollProgress * 5}deg)`;
         imageRef.current.style.opacity = `${1 - Math.abs(scrollProgress) * 0.5}`;
@@ -39,7 +35,7 @@ const About = () => {
       <div className="about-container">
         <div className="about-image-container" ref={imageRef}>
           <div className="image-placeholder">
-            <img src="/src/assets/profile.jpeg" alt="Financial Advisor" />
+            <img src="/assets/profile.jpeg" alt="Financial Advisor" />
           </div>
         </div>
         <div className="about-content" ref={contentRef}>
